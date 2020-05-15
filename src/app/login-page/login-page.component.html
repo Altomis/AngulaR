@@ -1,0 +1,42 @@
+<form class="card" [formGroup]="form" >
+    <div class="card-content">
+        <span class="card-title">Log in</span>
+        <div class="input-field">
+            <input 
+            id="email" 
+            type="email" 
+            formControlName="email"
+            [ngClass]="{'invalid': form.get('email').invalid && form.get('email').touched}">
+            <label for="email">Username:</label>
+            <span class="helper-text red-text" *ngIf="form.get('email').invalid && form.get('email').touched">
+                <span *ngIf="form.get('email').errors['required']">Napiste username</span>
+                <span *ngIf="form.get('email').errors['email']">Usename neni spravny</span>
+              </span>
+        </div>
+        <div class="input-field">
+            <input 
+            id="password" 
+            type="password" 
+            formControlName="password"
+            [ngClass]="{'invalid': form.get('password').invalid && form.get('password').touched}">
+            
+            <label for="password">Password:</label>
+            <span class="helper-text red-text" *ngIf="form.get('password').invalid && form.get('password').touched">
+                <span *ngIf="form.get('password').errors['required']">Heslo nesmi být prázdné</span>
+                <span
+                  *ngIf="form.get('password').errors['minlength'] && form.get('password').errors['minlength']['requiredLength']">
+                  Heslo musí mít víc než {{form.get('password').errors['minlength']['requiredLength']}} znaků.
+                
+                </span>
+              </span>
+        </div>
+    </div>
+    <div class="card-action">
+        <button 
+        class="modal-action btn waves-effect"
+        type="submit"
+        [disabled]="form.invalid || form.disabled">
+        Login</button>
+           
+    </div>
+</form>

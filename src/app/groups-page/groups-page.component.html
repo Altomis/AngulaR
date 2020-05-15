@@ -1,0 +1,47 @@
+
+<main class="content">
+   
+
+    <div class="row">
+        
+        <div class="col s22">ssssssssssss</div>
+
+        <div class="col s6">
+            <p>
+                GROUPS
+                <tr *ngFor="let emp of service.list">
+                    <td (click)="populateForm(emp)">[{{emp.Surname}}]</td>                  
+                 </tr>
+            </p>
+        </div>
+
+        <div class="col s6">
+            <p>
+                USERS
+                <tr *ngFor="let emp of service.list">
+                    <td (click)="populateForm(emp)">[{{emp.Login}}]</td>                  
+                </tr>
+            </p>
+        </div>
+
+        <div class="col s6">
+            <p>
+                JOBS
+
+                <tr *ngFor="let emp of service.list">
+                    <td (click)="populateForm(emp)">[{{emp.Passwd}}]</td>                  
+                </tr>
+            </p>
+        </div>
+        
+      </div>
+
+   
+    <div class="page-title">
+        
+        <button class="waves-effect waves-light btn grey darken-1">ADDJOB</button>
+        <button class="waves-effect waves-light btn grey darken-1">ADD USER</button>
+    </div>
+
+   
+</main>
