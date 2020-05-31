@@ -10,7 +10,7 @@ export class GroupsService {
 
  //url = 'http://localhost:49497/api/Admin/';
  url = 'http://localhost:49497/api/Admin/'
- constructor(private http: HttpClient) { }
+ constructor(public http: HttpClient) { }
  
  getAllGroups(): Observable<Groups[]> {
   var groups = this.http.get<Groups[]>(this.url);

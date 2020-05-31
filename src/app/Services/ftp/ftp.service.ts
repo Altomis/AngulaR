@@ -9,19 +9,20 @@ import { environment } from 'src/app/Enviroment/environment'
 })
 export class FTPService{
 
- //url = 'http://localhost:49497/api/Admin/';
- url = 'http://localhost:49497/api/Admin/'
- constructor(private http: HttpClient) { }
+  formData:FTP_Server
+  list : FTP_Server[];
+  readonly rootURL="http://localhost:49497/api"
+  constructor(public http: HttpClient) { }
  
  getAllFTP_Servers(): Observable<FTP_Server[]> {
-  var ftp_server = this.http.get<FTP_Server[]>(this.url);
+  var ftp_server = this.http.get<FTP_Server[]>(this.rootURL);
   if (ftp_server != null)
   {
     return ftp_server;
   }
 }
 getFTP_ServerById(ftp_serverid: string): Observable<FTP_Server> {
-  var ftp_server = this.http.get<FTP_Server>(this.url + ftp_serverid );
+  var ftp_server = this.http.get<FTP_Server>(this.rootURL + ftp_serverid );
   if(ftp_server != null)
   {
     return ftp_server;
@@ -31,22 +32,19 @@ getFTP_ServerById(ftp_serverid: string): Observable<FTP_Server> {
     console.log("ftp_server is null");
   }
 }
-postFTP_Server(ftp_server: FTP_Server): Observable<FTP_Server>{
-  return this.http.post<FTP_Server>(this.url,ftp_server, {
-    headers: new HttpHeaders({
-      'Content-type':'application/json'
-    })
-  })
-}
+post(formData:FTP_Server){
+  return this.http.post(this.rootURL+'/FTP_Server',formData)
+    }
+    
 delFTP_Server(ftp_serverid: string): Observable<FTP_Server>{
-  return this.http.delete<FTP_Server>(this.url + ftp_serverid, {
+  return this.http.delete<FTP_Server>(this.rootURL + ftp_serverid, {
     headers: new HttpHeaders({
       'Content-type':'application/json'
     })
   })
 }
 putFTP_Server(ftp_serverid: string, ftp_server: FTP_Server): Observable<FTP_Server>{
-    return this.http.put<FTP_Server>(this.url + ftp_serverid, ftp_server, {
+    return this.http.put<FTP_Server>(this.rootURL + ftp_serverid, ftp_server, {
       headers: new HttpHeaders({
         'Content-type':'application/json'
     })

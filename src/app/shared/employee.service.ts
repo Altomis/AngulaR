@@ -1,35 +1,36 @@
 import { Injectable } from '@angular/core';
-import { Emloyee } from './emloyee-model';
-import{HttpClient,HttpHeaders} from "@angular/common/http"
-import { Observable } from 'rxjs';
+import { FormControl,FormGroup,Validators } from '@angular/forms';
+import { elementEventFullName } from '@angular/compiler/src/view_compiler/view_compiler';
 
 @Injectable({
   providedIn: 'root'
 })
 export class EmployeeService {
 
-  formData:Emloyee
-  list : Emloyee[];
-  readonly rootURL="http://localhost:49497/api"
+  constructor() { }
 
-  constructor(private http:HttpClient) { }
-
-
-  post(formData:Emloyee){
-    return this.http.post(this.rootURL+'/Admin',formData)
-      }
-
-      refreshList(){
-        this.http.get(this.rootURL+'/Admin')
-        .toPromise().then(res => this.list = res as Emloyee[]);
-      }
-    
-      putEmployee(formData : Emloyee){
-        return this.http.put(this.rootURL+'/Admin/'+formData.Id,formData);
-         
-       }
-    
-       deleteEmployee(id : number){
-        return this.http.delete(this.rootURL+'/Admin/'+id);
-       }
+  form:FormGroup = new FormGroup({
+    $key: new FormControl(null),
+    fullName: new FormControl('', Validators.required),
+    email: new FormControl('', Validators.email),
+    mobile: new FormControl('', [Validators.required, Validators.minLength(8)]),
+    city: new FormControl(''),
+    gender: new FormControl('1'),
+    department: new FormControl(0),
+    hireDate: new FormControl(''),
+    isPermanent: new FormControl(false)
+  });
+  initializeFormGroup() {
+    this.form.setValue({
+      $key: null,
+      fullName: '',
+      email: '',
+      mobile: '',
+      city: '',
+      gender: '1',
+      department: 0,
+      hireDate: '',
+      isPermanent: false
+    });
+}
 }

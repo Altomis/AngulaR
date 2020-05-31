@@ -1,17 +1,14 @@
 
-<main class="content">
-   
+
 
     <div class="row">
         
-        <div class="col s22">ssssssssssss</div>
-
-        <div class="col s6">
+        <div class="col s12">
             <p>
                 GROUPS
                 <tr *ngFor="let emp of service.list">
-                    <td (click)="populateForm(emp)">[{{emp.Surname}}]</td>                  
-                 </tr>
+                    <td (click)="populateForm(emp)">[{{emp.Pc_Name}}]</td>                 
+                  </tr>
             </p>
         </div>
 
@@ -19,29 +16,31 @@
             <p>
                 USERS
                 <tr *ngFor="let emp of service.list">
-                    <td (click)="populateForm(emp)">[{{emp.Login}}]</td>                  
-                </tr>
+                    <input name="MacAddress" #MacAddress="ngModel" [(ngModel)]="service.formData.MacAddress" class="form-controls">                
+                  </tr>
+                 <button class="waves-effect waves-light btn grey darken-1" (click)="onCreate1()">ADD USER</button>
             </p>
         </div>
+
+      
 
         <div class="col s6">
             <p>
                 JOBS
-
                 <tr *ngFor="let emp of service.list">
-                    <td (click)="populateForm(emp)">[{{emp.Passwd}}]</td>                  
-                </tr>
+                    <input name="IpAddress" #IpAddress="ngModel" [(ngModel)]="service.formData.IpAddress" class="form-controls">                 
+                  </tr>
+                
+                <button class="waves-effect waves-light btn grey darken-1" (click)="onCreate2()">ADDJOB</button>
             </p>
         </div>
         
       </div>
+  
+   
+
 
    
-    <div class="page-title">
-        
-        <button class="waves-effect waves-light btn grey darken-1">ADDJOB</button>
-        <button class="waves-effect waves-light btn grey darken-1">ADD USER</button>
-    </div>
-
+  
    
-</main>
+

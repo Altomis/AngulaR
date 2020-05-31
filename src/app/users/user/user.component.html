@@ -1,0 +1,34 @@
+<form #form="ngForm" (submit)="onSubmit(form)">
+    <input type="hidden" name="Id" #Id="ngModel" [(ngModel)]="service.formData.Id">
+    <div class="form-group">
+        <label>Pc_Name</label>
+        
+        <input name="Pc_Name" #Pc_Name="ngModel" [(ngModel)]="service.formData.Pc_Name" class="form-controls" required>
+        <div class="validation-error" *ngIf="Pc_Name.invalid && Pc_Name.touched">This field is required.</div>
+    </div>
+    <div class="form-group">
+        <label>MacAddress</label>
+        <input name="MacAddress" #MacAddress="ngModel" [(ngModel)]="service.formData.MacAddress" class="form-controls">
+    </div>
+    
+    <div clas="form-row">
+        <div class="form-group col-md-6">
+            <label>IpAddress</label>
+            <input name="IpAddress" #IpAddress="ngModel" [(ngModel)]="service.formData.IpAddress" class="form-controls">
+        </div>
+
+        <div class="form-group col-md-6">
+            <label>Created</label>
+            <input name="Created" #Created="ngModel" [(ngModel)]="service.formData.Created" class="form-controls">
+        </div>
+        <div class="form-group col-md-6">
+            <label>Active</label>
+            <input name="Active" #Active="ngModel" [(ngModel)]="service.formData.Active" class="form-controls">
+        </div>
+        
+    </div>
+    <div class="form-control">
+        <button type="submit" class="btn btn-lg btn-block">SUMBIT</button>
+    </div>
+</form>
+

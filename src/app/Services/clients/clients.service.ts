@@ -9,19 +9,20 @@ import { environment } from 'src/app/Enviroment/environment'
 })
 export class ClientsService {
 
-  //url = 'http://localhost:49497/api/Admin/';
-  url = 'http://localhost:49497/api/Admin/'
-  constructor(private http: HttpClient) { }
+  formData:Clients
+  list : Clients[];
+  readonly rootURL="http://localhost:49497/api"
+  constructor(public http:HttpClient) { }
   
   getAllClients(): Observable<Clients[]> {
-    var client = this.http.get<Clients[]>(this.url);
+    var client = this.http.get<Clients[]>(this.rootURL);
     if (client != null)
     {
       return client;
     }
   }
   getClientById(clientid: string): Observable<Clients> {
-    var client = this.http.get<Clients>(this.url + clientid);
+    var client = this.http.get<Clients>(this.rootURL + clientid);
     if(client != null)
     {
       return client;
@@ -31,22 +32,19 @@ export class ClientsService {
       console.log("client is null");
     }
   }
-  postClient(client: Clients): Observable<Clients>{
-    return this.http.post<Clients>(this.url,client, {
-      headers: new HttpHeaders({
-        'Content-type':'application/json'
-      })
-    })
-  }
-  delClient(clientid: string): Observable<Clients>{
-    return this.http.delete<Clients>(this.url + clientid, {
-      headers: new HttpHeaders({
-        'Content-type':'application/json'
-      })
-    })
+  post(formData:Clients){
+    return this.http.post(this.rootURL+'/Clients',formData)
+      }
+
+   deleteEmployee(id : number){
+        return this.http.delete(this.rootURL+'/Clients/'+id);
+       }
+  refreshList(){
+    this.http.get(this.rootURL+'/Clients')
+    .toPromise().then(res => this.list = res as Clients[]);
   }
   putClient(clientid: string, client: Clients): Observable<Clients>{
-      return this.http.put<Clients>(this.url + clientid, client, {
+      return this.http.put<Clients>(this.rootURL + clientid, client, {
         headers: new HttpHeaders({
           'Content-type':'application/json'
       })

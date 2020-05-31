@@ -9,5 +9,6 @@ body {
 main {
   flex: 1 0 auto;
 }
-
-
+main, footer {
+  margin-left: 0;
+}

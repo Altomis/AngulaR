@@ -1,10 +1,11 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { MaterialModule } from "./material/material.module";
 import{FormsModule,ReactiveFormsModule} from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
-
+import { DatePipe } from '@angular/common';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -15,10 +16,12 @@ import { BackupPageComponent } from './backup-page/backup-page.component';
 import { UserPageComponent } from './user-page/user-page.component';
 import { GroupsPageComponent } from './groups-page/groups-page.component';
 import { LogsPageComponent } from './logs-page/logs-page.component';
-import { EmloyeesComponent } from './emloyees/emloyees.component';
-import { EmloyeeComponent } from './emloyees/emloyee/emloyee.component';
-import { EmloyeeListComponent } from './emloyees/emloyee-list/emloyee-list.component';
-import { EmployeeService } from './shared/employee.service';
+
+import { UsersComponent } from './users/users.component';
+import { UserComponent } from './users/user/user.component';
+import { UserListComponent } from './users/user-list/user-list.component';
+
+
 import { AdminService } from './Services/admin/admin.service';
 import { ClientsService } from './Services/clients/clients.service';
 import { ClientsGroupsService } from './Services/clients-groups/clients-groups.service';
@@ -26,6 +29,13 @@ import { FTPService } from './Services/ftp/ftp.service';
 import { GroupsService } from './Services/groups/groups.service';
 import { JobsService } from './Services/jobs/jobs.service';
 import { PathService } from './Services/path/path.service';
+import { EmployeesComponent } from './employees/employees.component';
+import { EmployeeComponent } from './employees/employee/employee.component';
+import { AboutPageComponent } from './about-page/about-page.component';
+import { EmployeeService } from './shared/employee.service';
+import { JobsComponent } from './jobs/jobs.component';
+import { FtpserverComponent } from './ftpserver/ftpserver.component';
+
 
 
 @NgModule({
@@ -38,10 +48,14 @@ import { PathService } from './Services/path/path.service';
     UserPageComponent,
     GroupsPageComponent,
     LogsPageComponent,
-    EmloyeesComponent,
-    EmloyeeComponent,
-    EmloyeeListComponent,
-   
+    UsersComponent,
+    UserComponent,  
+    UserListComponent,  
+    EmployeesComponent,
+    EmployeeComponent,
+    AboutPageComponent,
+    JobsComponent,
+    FtpserverComponent
   ],
   imports: [
     BrowserModule,
@@ -50,10 +64,12 @@ import { PathService } from './Services/path/path.service';
     ReactiveFormsModule,
     HttpClientModule,
     BrowserAnimationsModule,
+    MaterialModule,
     ToastrModule.forRoot()
     
   ],
-  providers: [EmployeeService],
-  bootstrap: [AppComponent]
+  providers: [ClientsService,EmployeeService],
+  bootstrap: [AppComponent],
+  entryComponents:[UserComponent,UserListComponent]
 })
 export class AppModule { }

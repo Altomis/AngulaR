@@ -1,22 +1,22 @@
 import { Component, OnInit } from '@angular/core';
-import { EmployeeService } from 'src/app/shared/employee.service';
-import { Emloyee } from 'src/app/shared/emloyee-model';
+import { ClientsService } from 'src/app/Services/clients/clients.service';
+import { Clients } from 'src/app/Models/clients';
 import { ToastrService } from 'ngx-toastr';
 
 @Component({
-  selector: 'app-emloyee-list',
-  templateUrl: './emloyee-list.component.html',
-  styleUrls: ['./emloyee-list.component.css']
+  selector: 'app-user-list',
+  templateUrl: './user-list.component.html',
+  styleUrls: ['./user-list.component.css']
 })
-export class EmloyeeListComponent implements OnInit {
+export class UserListComponent implements OnInit {
 
-  constructor(private service: EmployeeService,
-    private toastr: ToastrService) { }
+  constructor(public service: ClientsService,
+    public toastr: ToastrService) { }
 
   ngOnInit(){
     this.service.refreshList();
   }
-populateForm(emp: Emloyee) {
+populateForm(emp: Clients) {
   this.service.formData = Object.assign({}, emp);
 }
 

@@ -9,19 +9,20 @@ import { environment } from 'src/app/Enviroment/environment'
 })
 export class JobsService {
 
-  //url = 'http://localhost:49497/api/Admin/';
-  url = 'http://localhost:49497/api/Admin/'
-  constructor(private http: HttpClient) { }
+  formData:Jobs
+  list : Jobs[];
+  readonly rootURL="http://localhost:49497/api"
+  constructor(public http: HttpClient) { }
   
   getAllJobs(): Observable<Jobs[]> {
-    var jobs = this.http.get<Jobs[]>(this.url);
+    var jobs = this.http.get<Jobs[]>(this.rootURL);
     if (jobs != null)
     {
       return jobs;
     }
   }
   getJobsById(jobsid: string): Observable<Jobs> {
-    var jobs = this.http.get<Jobs>(this.url + jobsid );
+    var jobs = this.http.get<Jobs>(this.rootURL + jobsid );
     if(jobs != null)
     {
       return jobs;
@@ -31,22 +32,19 @@ export class JobsService {
       console.log("jobs is null");
     }
   }
-  postJobs(jobs: Jobs): Observable<Jobs>{
-    return this.http.post<Jobs>(this.url,jobs, {
-      headers: new HttpHeaders({
-        'Content-type':'application/json'
-      })
-    })
-  }
+  post(formData:Jobs){
+    return this.http.post(this.rootURL+'/Jobs',formData)
+      }
+      
   delJobs(jobsid: string): Observable<Jobs>{
-    return this.http.delete<Jobs>(this.url + jobsid, {
+    return this.http.delete<Jobs>(this.rootURL + jobsid, {
       headers: new HttpHeaders({
         'Content-type':'application/json'
       })
     })
   }
   putJobs(jobsid: string, jobs: Jobs): Observable<Jobs>{
-      return this.http.put<Jobs>(this.url + jobsid, jobs, {
+      return this.http.put<Jobs>(this.rootURL + jobsid, jobs, {
         headers: new HttpHeaders({
           'Content-type':'application/json'
       })

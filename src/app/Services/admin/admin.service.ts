@@ -9,7 +9,7 @@ import { environment } from 'src/app/Enviroment/environment'
 })
 export class AdminService {
   url = 'http://localhost:49497/api/Admin/'
-  constructor(private http: HttpClient) { }
+  constructor(public http: HttpClient) { }
 
   getAllAdmins(): Observable<Admin[]> {
     var adm = this.http.get<Admin[]>(this.url);

@@ -7,18 +7,21 @@ import { BackupPageComponent } from './backup-page/backup-page.component';
 import { GroupsPageComponent } from './groups-page/groups-page.component';
 import { LogsPageComponent } from './logs-page/logs-page.component';
 import { UserPageComponent } from './user-page/user-page.component';
+import { AboutPageComponent } from './about-page/about-page.component';
 
 
 const routes: Routes = [
 {path:'', component:AuthLayoutComponent,children:[
   {path:'',redirectTo:'/login',pathMatch:'full'},
   {path:'login',component:LoginPageComponent}]},
-  {path:'users',component:UserPageComponent},
+ 
 {path:'', component:SiteLayoutComponent,children:[
-  {path:'',redirectTo:'/users',pathMatch:'full'},
+  {path:'',redirectTo:'/logs',pathMatch:'full'},
+  {path:'',redirectTo:'/about',pathMatch:'full'},
   {path:'backups',component:BackupPageComponent},
-  //{path:'users',component:UserPageComponent},
+  {path:'users',component:UserPageComponent},
   {path:'logs',component:LogsPageComponent},
+  {path:'about',component:AboutPageComponent},
   {path:'groups',component:GroupsPageComponent}
 ]},
 

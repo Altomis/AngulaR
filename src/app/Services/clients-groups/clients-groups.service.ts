@@ -11,7 +11,7 @@ export class ClientsGroupsService {
 
   //url = 'http://localhost:49497/api/Admin/';
   url = 'http://localhost:49497/api/Admin/'
-  constructor(private http: HttpClient) { }
+  constructor(public http: HttpClient) { }
   
   getAllClientsGroups(): Observable<ClientsGroups[]> {
     var clientsgroups = this.http.get<ClientsGroups[]>(this.url);

@@ -11,7 +11,7 @@ export class PathService  {
 
    //url = 'http://localhost:49497/api/Admin/';
    url = 'http://localhost:49497/api/Admin/'
-   constructor(private http: HttpClient) { }
+   constructor(public http: HttpClient) { }
    
    getAllPaths(): Observable<Path[]> {
     var path = this.http.get<Path[]>(this.url);
