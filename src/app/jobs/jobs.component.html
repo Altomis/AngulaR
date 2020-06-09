@@ -1,7 +1,17 @@
 <form #form="ngForm" (submit)="onSubmit(form)">
   <input type="hidden" name="Id" #Id="ngModel" [(ngModel)]="service.formData.Id">
-  
-  
+ 
+
+
+ 
+  <div class="form-group">
+    <label>Repeat</label>
+    <a href="https://crontab.guru/">SetCron</a>
+    <input name="CronTime" #CronTime="ngModel" [(ngModel)]="service.formData.CronTime" class="form-controls" required>
+    
+    <div class="validation-error" *ngIf="CronTime.invalid && Ends.touched">This field is required.</div>
+</div>
+
   <div class="form-group">
         <label>Ends</label>
         
@@ -15,22 +25,43 @@
         <input name="MaxSecBackup" #MaxSecBackup="ngModel" [(ngModel)]="service.formData.MaxSecBackup" class="form-controls">
     </div>
 
+
     <div class="form-group">
       <label>MaxFullBackup</label>
       <input name="MaxFullBackup" #MaxFullBackup="ngModel" [(ngModel)]="service.formData.MaxFullBackup" class="form-controls">
   </div>
-    
+
  
-  <mat-select formControlName="BackupType" placeholder="BackupType" >
-    <ng-container *ngFor="let BackupType of BackupType">
-      <mat-option value="{{BackupType.id}}">{{BackupType.value}}</mat-option>
-    </ng-container>
-  </mat-select>
+  
 
 
-  <button name="secBtn" type="button" class="btn btn-success" (click)="onCreate1()">ADD FTP</button>
+  <div class="form-group">
+    <div class="form-group">
+      <mat-radio-group name="ToZip" #ToZip="ngModel" [(ngModel)]="service.formData.ToZip" class="form-controls">
+        <mat-radio-button class="form-controls" [value]="true">yes</mat-radio-button>
+        <mat-radio-button class="form-controls" [value]="false">no</mat-radio-button>
+      
+      </mat-radio-group>
+    </div>
+  
+  </div>
+ 
+  
+  <button name="secBtn" type="button" class="btn btn-success" (click)="onCreate()">ADD DESTINATION</button>
+
+  <div class="form-group">
+    <div class="form-group">
+      <mat-radio-group name="BackupType" #ToZip="ngModel" [(ngModel)]="service.formData.BackupType" class="form-controls" fxLayout="column">
+        <mat-radio-button class="form-controls" *ngFor="let op of BackupType"  name="opList" [value]="op.BackupType">{{ op.name}}</mat-radio-button>
+      </mat-radio-group>
+    </div>
+  
+  </div>
+
+
+  
 
 
       <button name="FirstBtn" type="submit" class="btn btn-lg btn-block">SUMBIT</button>
-  
+      
 </form>

@@ -7,7 +7,7 @@
             <p>
                 GROUPS
                 <tr *ngFor="let emp of service.list">
-                    <td (click)="populateForm(emp)">[{{emp.Pc_Name}}]</td>                 
+                    <td (click)="populateForm(emp)">[{{emp.Name}}]</td>                 
                   </tr>
             </p>
         </div>
@@ -16,7 +16,7 @@
             <p>
                 USERS
                 <tr *ngFor="let emp of service.list">
-                    <input name="MacAddress" #MacAddress="ngModel" [(ngModel)]="service.formData.MacAddress" class="form-controls">                
+                    <td (click)="populateForm(emp)">[{{emp.Name}}]</td>                 
                   </tr>
                  <button class="waves-effect waves-light btn grey darken-1" (click)="onCreate1()">ADD USER</button>
             </p>
@@ -28,7 +28,7 @@
             <p>
                 JOBS
                 <tr *ngFor="let emp of service.list">
-                    <input name="IpAddress" #IpAddress="ngModel" [(ngModel)]="service.formData.IpAddress" class="form-controls">                 
+                    <td (click)="populateForm(emp)">[{{emp.Name}}]</td>                 
                   </tr>
                 
                 <button class="waves-effect waves-light btn grey darken-1" (click)="onCreate2()">ADDJOB</button>

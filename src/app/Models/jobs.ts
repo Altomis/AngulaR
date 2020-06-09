@@ -5,4 +5,5 @@ export class Jobs {
     MaxSecBackup: number;
     CronTime: string;
     Ends: string;
+    ToZip:boolean;
 }

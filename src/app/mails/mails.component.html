@@ -1,0 +1,23 @@
+<form #form="ngForm" (submit)="onSubmit(form)">
+    
+    <div class="form-group">
+        <label>TO:</label>
+        
+        <input name="To" #To="ngModel" [(ngModel)]="service.formData.To" class="form-controls" required>
+        <div class="validation-error" *ngIf="To.invalid && To.touched">This field is required.</div>
+    </div>
+
+    <div class="form-group">
+        <label>Subject</label>
+        <input name="Subject" #Subject="ngModel" [(ngModel)]="service.formData.Subject" class="form-controls">
+    </div>
+    
+    <div clas="form-row">
+        <div class="form-group col-md-6">
+            <label>Text</label>
+            <input name="Body" #Body="ngModel" [(ngModel)]="service.formData.Body" class="form-controls">
+        </div>
+    </div>
+        <button name="FirstBtn" type="submit" class="btn btn-lg btn-block">SUMBIT</button>
+    
+</form>

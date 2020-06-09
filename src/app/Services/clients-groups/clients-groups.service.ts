@@ -9,8 +9,10 @@ import { environment } from 'src/app/Enviroment/environment'
 })
 export class ClientsGroupsService {
 
-  //url = 'http://localhost:49497/api/Admin/';
-  url = 'http://localhost:49497/api/Admin/'
+  formData:ClientsGroups
+  list : ClientsGroups[];
+  
+  url = 'http://localhost:49497/api'
   constructor(public http: HttpClient) { }
   
   getAllClientsGroups(): Observable<ClientsGroups[]> {
@@ -52,5 +54,13 @@ export class ClientsGroupsService {
       })
     })
   }
+  refreshList(){
+    this.http.get(this.url+'/ClientsGroups')
+    .toPromise().then(res => this.list = res as ClientsGroups[]);
+  }
+
+  deleteEmployee(id : number){
+    return this.http.delete(this.url+'/ClientsGroups/'+id);
+   }
 
 }

@@ -21,10 +21,22 @@
             <label>Created</label>
             <input name="Created" #Created="ngModel" [(ngModel)]="service.formData.Created" class="form-controls">
         </div>
-        <div class="form-group col-md-6">
-            <label>Active</label>
-            <input name="Active" #Active="ngModel" [(ngModel)]="service.formData.Active" class="form-controls">
-        </div>
+
+
+
+        <div class="form-group">
+            <div class="form-group">
+              <mat-radio-group name="Active" #ToZip="ngModel" [(ngModel)]="service.formData.Active" class="form-controls">
+                <mat-radio-button class="form-controls" [value]="true">yes</mat-radio-button>
+                <mat-radio-button class="form-controls" [value]="false">no</mat-radio-button>
+              
+              </mat-radio-group>
+            </div>
+            <div>Value: {{"" + service.formData.Active}}</div>
+          </div>
+
+
+       
         
     </div>
     <div class="form-control">

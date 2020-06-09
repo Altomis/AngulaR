@@ -10,7 +10,9 @@ import { environment } from 'src/app/Enviroment/environment';
 export class PathService  {
 
    //url = 'http://localhost:49497/api/Admin/';
-   url = 'http://localhost:49497/api/Admin/'
+   url = 'http://localhost:49497/api/'
+   formData:Path
+  list : Path[];
    constructor(public http: HttpClient) { }
    
    getAllPaths(): Observable<Path[]> {
@@ -31,26 +33,23 @@ export class PathService  {
       console.log("path is null");
     }
   }
-  postPath(path: Path): Observable<Path>{
-    return this.http.post<Path>(this.url,path, {
-      headers: new HttpHeaders({
-        'Content-type':'application/json'
-      })
-    })
-  }
-  delPath(pathid: string): Observable<Path>{
-    return this.http.delete<Path>(this.url + pathid, {
-      headers: new HttpHeaders({
-        'Content-type':'application/json'
-      })
-    })
-  }
+  post(formData:PathService){
+    return this.http.post(this.url+'/Path',formData)
+      }
+      deleteEmployee(id : number){
+        return this.http.delete(this.url+'/Path/'+id);
+       }
   putPath(pathid: string, path: Path): Observable<Path>{
       return this.http.put<Path>(this.url + pathid, path, {
         headers: new HttpHeaders({
           'Content-type':'application/json'
       })
     })
+  }
+
+  refreshList(){
+    this.http.get(this.url+'/Path')
+    .toPromise().then(res => this.list = res as Path[]);
   }
 
 }

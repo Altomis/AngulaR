@@ -1,10 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { JobsService } from 'src/app/Services/jobs/jobs.service';
+import { FTPService } from 'src/app/Services/ftp/ftp.service';
+import { PathService } from 'src/app/Services/path/path.service';
 import { ClientsGroupsService } from 'src/app/Services/clients-groups/clients-groups.service';
-import { NgForm } from '@angular/forms';
+import { NgForm, FormGroup, FormControl, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { MatDialog,MatDialogConfig } from '@angular/material/dialog';
 import { FtpserverComponent } from '../ftpserver/ftpserver.component';
+import { PathsComponent } from 'src/app/Paths/Paths.component';
+
 
 @Component({
   selector: 'app-jobs',
@@ -13,39 +17,60 @@ import { FtpserverComponent } from '../ftpserver/ftpserver.component';
 })
 export class JobsComponent implements OnInit {
 
-  constructor(public service:JobsService, public dialog:MatDialog,
+  constructor(public service:JobsService,public service1:PathService, public dialog:MatDialog,
    toastr: ToastrService) { }
    
    BackupType = [
-    { id: 3, value: 'Dep 1' },
-    { id: 2, value: 'Dep 2' },
-    { id: 3, value: 'Dep 3' }];
+    { "name": "full", BackupType: "full" },
+    { "name": "diff", BackupType: "diff" },
+    { "name": "incr", BackupType: "incr" }];
+   
+    
 
  
     ngOnInit(): void {
       this.reserForm();
+      
     }
-    onCreate1(){
-      this.dialog.open(FtpserverComponent);
+
+ 
+    
+    onCreate(){
+      this.dialog.open(PathsComponent);
   
     }
   
     reserForm(form?:NgForm){
       if(form!=null)
         form.resetForm();
-      this.service.formData={
-        Id: null,
-        BackupType:"",
-        CronTime: "",
-        Ends: "",
-        MaxSecBackup:null,
-        MaxFullBackup:null,
+
+                this.service.formData={
+                  Id: null,
+                  BackupType:"",
+                  CronTime: "",
+                  Ends: "",
+                  MaxSecBackup:null,
+                  MaxFullBackup:null,
+                  ToZip: true,
+              }     
+              
+                this.service1.formData={
+                  Id: null,
+                  IdJob: null,
+                  Source: "",
+                  IdFTP: null,
+                  Which: true,
+                  Login: "",
+                  Password: "",
+              }
     }
-      
-    }
+
+    
     
     onSubmit(form:NgForm){
       this.insertRecord(form);
+      
+     
     }
   
   
@@ -53,5 +78,9 @@ export class JobsComponent implements OnInit {
       this.service.post(form.value).subscribe(res=>{
         this.reserForm(form)
       });
+      
+
+     
     }
+    
 }

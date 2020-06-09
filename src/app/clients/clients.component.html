@@ -1,0 +1,14 @@
+<form #form="ngForm" (submit)="onSubmit(form)">
+
+  
+  <mat-select formControlName="Users" placeholder="Users" multiple >
+    <ng-container *ngFor="let Users of Users">
+      <mat-option value="{{Users.id}}">{{Users.value}}</mat-option>
+    </ng-container>
+  </mat-select>
+    
+  
+  
+   <button name="FirstBtn" type="submit" class="btn btn-lg btn-block">SUMBIT</button>
+    
+  </form>

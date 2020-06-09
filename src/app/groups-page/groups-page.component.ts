@@ -1,11 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { ClientsService } from 'src/app/Services/clients/clients.service';
 import { Clients } from 'src/app/Models/clients';
+import { ClientsGroupsService } from 'src/app/Services/clients-groups/clients-groups.service';
+import { ClientsGroups } from 'src/app/Models/clients-groups';
 import { ToastrService } from 'ngx-toastr';
 import { MatDialog,MatDialogConfig } from '@angular/material/dialog';
 import { UsersComponent } from '../users/users.component';
 import { UserListComponent } from '../users/user-list/user-list.component';
-import { UserComponent } from '../users/user/user.component';
+import { ClientsComponent } from '../clients/clients.component';
 import { BackupPageComponent } from '../backup-page/backup-page.component';
 import { JobsComponent } from '../jobs/jobs.component';
 
@@ -20,14 +22,14 @@ import { JobsComponent } from '../jobs/jobs.component';
 export class GroupsPageComponent implements OnInit {
 
 
-  constructor(public service: ClientsService,
+  constructor(public service: ClientsGroupsService,
     public dialog:MatDialog,
     public toastr: ToastrService) { }
 
   ngOnInit(): void {
     this.service.refreshList();
   }
-  populateForm(emp: Clients) {
+  populateForm(emp: ClientsGroups) {
   this.service.formData = Object.assign({}, emp);
 }
 
@@ -42,7 +44,7 @@ onDelete(id: number) {
 }
 
   onCreate1(){
-    this.dialog.open(UserComponent);
+    this.dialog.open(ClientsComponent);
 
   }
   onCreate2(){

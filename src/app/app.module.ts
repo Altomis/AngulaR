@@ -22,6 +22,7 @@ import { UserComponent } from './users/user/user.component';
 import { UserListComponent } from './users/user-list/user-list.component';
 
 
+
 import { AdminService } from './Services/admin/admin.service';
 import { ClientsService } from './Services/clients/clients.service';
 import { ClientsGroupsService } from './Services/clients-groups/clients-groups.service';
@@ -35,6 +36,13 @@ import { AboutPageComponent } from './about-page/about-page.component';
 import { EmployeeService } from './shared/employee.service';
 import { JobsComponent } from './jobs/jobs.component';
 import { FtpserverComponent } from './ftpserver/ftpserver.component';
+import { ClientsComponent } from './clients/clients.component';
+import { PathCComponent } from './Paths/path-c/path-c.component';
+import { PathListComponent } from './Paths/path-list/path-list.component';
+import { PathsComponent } from './Paths/Paths.component';
+import { CronComponent } from './cron/cron.component';
+import { MailsComponent } from './mails/mails.component';
+
 
 
 
@@ -55,7 +63,17 @@ import { FtpserverComponent } from './ftpserver/ftpserver.component';
     EmployeeComponent,
     AboutPageComponent,
     JobsComponent,
-    FtpserverComponent
+    FtpserverComponent,
+    ClientsComponent,
+   
+    PathCComponent,
+    PathListComponent,
+    PathsComponent,
+    CronComponent,
+    MailsComponent,
+    
+   
+   
   ],
   imports: [
     BrowserModule,
@@ -68,8 +86,8 @@ import { FtpserverComponent } from './ftpserver/ftpserver.component';
     ToastrModule.forRoot()
     
   ],
-  providers: [ClientsService,EmployeeService],
+  providers: [ClientsService,EmployeeService,],
   bootstrap: [AppComponent],
-  entryComponents:[UserComponent,UserListComponent]
+  entryComponents:[UserComponent,UserListComponent,FtpserverComponent]
 })
 export class AppModule { }
